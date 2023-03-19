@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+## Lesson 5
+- Raw DOM elements are node (not object) but the React DOM elements are Object
+- JSX itself a JavaScript expression
+- To write JSX in multi like like HTML, we need to wrap those lines inside ();
+```js
+const index = 0;
+const element = (
+    <h1 className="heading" tabIndex={index}>
+        Hello World
+    </h1>
+);
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Thnk React elemets like object, behind the schene the above elemet generate an object like this
+```js
+const elemento = {
+    type: 'h1',
+    props: {
+        className: 'heading',
+        tabIndex: 0,
+        children: 'Hello World'
+    }
+}
+```
 
-## Available Scripts
+- Values inside {} -> `{apiResponse}` eascaped automatically by react to protect from XSS attacks
+- ReactElemet is the smallest building block
+- The element we create in react is immeutable, that means not changeable. If we need to change, we will need to create a new element.
 
-In the project directory, you can run:
+## Lession 6 - Component & Props
+- We can't change react element, that's why component concept is created.
+- React element is not a functional element, but we need functional element that we can chagne. This is why React Component concept is created.
 
-### `npm start`
+```js
+function clock(){
+	return (
+		<h1 className='heading' tabIndex={index}>
+			<span className='text'>hello {new Date().toLocaleTimeString()}</span>
+		</h1>
+	);
+}
+```
+- Here clock function is called as React Component. But the `<h1>` tag inside the `()` is called React Element. That's the difference.
+- Whatever a component return is called React Element.
+- the clock() function can be invoked as HTML syntax like `<clock />` which is a component.
+- We can resuse components like `<img />` `<h1>` etc components.
+- We can pass parameters in component like `<img src="">` `src` attribute.
+- Component names should be start with uppercase letter
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- To create component in react, there is another way which is `Class syntax` by which we can crete components also.
+- Class is a stateful component.
+- There is not state in functional component. We can only change the state of the state by only using props. Whish is only the one way.
+- Class component provides the facility to change the state of the component by ownself.
