@@ -12,7 +12,22 @@ class Clock extends React.Component{
 
     // Since we have no props data to use in the state so we can call it directly.
     state = {
-        date: new Date()
+        date: new Date(),
+        locale: 'en-US'
+    }
+
+    // clickHandle(e){
+    //     e.preventDefault(); // Prevent default behavior
+        
+    //     // Change state.
+    //     this.setState({'locale': 'bn-BD'})
+    // }
+
+    // Prvious click handle method has `this` issue
+    // Solve the undefined this issue using arrow function
+    clickHandle = (locale) => {
+        // Change state.
+        this.setState({'locale': locale})
     }
 
 
@@ -20,9 +35,12 @@ class Clock extends React.Component{
         const index = 0;
 
 		return (
-			<h1 className='heading' tabIndex={index}>
-			<span className='text'>hello {this.state.date.toLocaleTimeString(this.props.locale)}</span>
-			</h1>
+            <div>
+                <h1 className='heading' tabIndex={index}>
+                <span className='text'>hello {this.state.date.toLocaleTimeString(this.state.locale)}</span>
+                </h1>
+                <button onClick={this.clickHandle.bind(this, 'bn-bd')}>Change Locale to BD</button>
+            </div>
 		);
 	}
 
