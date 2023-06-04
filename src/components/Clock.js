@@ -35,14 +35,14 @@ class Clock extends React.Component{
         // console.log('rendered clock componenet');
         const index = 0;
 
-        // const { date, locale } = this.state;
-        // let button;
+        const { locale } = this.state;
+        let button;
 
-        // if( locale === 'en-US' ){
-        //     button =    `<Button change={this.clickHandle} locale="bn-BD"/>`;
-        // } else{
-        //     button =    `<Button change={this.clickHandle} locale="en-US"/>`;
-        // }
+        if( locale === 'en-US' ){
+            button =    (<Button change={this.clickHandle} locale="bn-BD"/>); // Assign JSX element in the variable
+        } else{
+            button =    (<Button change={this.clickHandle} locale="en-US"/>);
+        }
 
 		return (
             <div>
@@ -52,7 +52,7 @@ class Clock extends React.Component{
                 {/* <Button change={this.clickHandle.bind(this, 'bn-BD')} /> it render button component each second */}
 
                 {/* It does not render the button component each second */}
-                <Button change={this.clickHandle} locale="bn-BD"/>
+                {button}
             </div>
 		);
 	}
