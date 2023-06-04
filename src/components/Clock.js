@@ -27,20 +27,32 @@ class Clock extends React.Component{
     // Prvious click handle method has `this` issue
     // Solve the undefined this issue using arrow function
     clickHandle = (locale) => {
-        // Change state.
         this.setState({'locale': locale})
     }
 
 
 	render(){
+        // console.log('rendered clock componenet');
         const index = 0;
+
+        // const { date, locale } = this.state;
+        // let button;
+
+        // if( locale === 'en-US' ){
+        //     button =    `<Button change={this.clickHandle} locale="bn-BD"/>`;
+        // } else{
+        //     button =    `<Button change={this.clickHandle} locale="en-US"/>`;
+        // }
 
 		return (
             <div>
                 <h1 className='heading' tabIndex={index}>
                 <span className='text'>hello {this.state.date.toLocaleTimeString(this.state.locale)}</span>
                 </h1>
-                <Button change={this.clickHandle.bind(this, 'bn-BD')} />
+                {/* <Button change={this.clickHandle.bind(this, 'bn-BD')} /> it render button component each second */}
+
+                {/* It does not render the button component each second */}
+                <Button change={this.clickHandle} locale="bn-BD"/>
             </div>
 		);
 	}

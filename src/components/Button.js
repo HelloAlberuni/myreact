@@ -2,19 +2,26 @@ import React from 'react';
 
 class Button extends React.Component{
     shouldComponentUpdate(nextProps){
-        const {change:currentChange} = this.props;
-        const {change:nextChange} = nextProps;
+        const {change:currentChange, locale:currentLocale} = this.props;
+        const {change:nextChange, locale:nextLocale} = nextProps;
 
-        console.log(currentChange);
-        console.log(nextChange);
+        // console.log(currentChange);
+        // console.log(nextChange);
+        
+        if( currentChange === nextChange && currentLocale === nextLocale ){
+            return false;
+        }
+
+        return true;
     }
 
     render(){
-        const { change } = this.props;
+        // console.log('rendered button componenet');
+        const { change, locale } = this.props;
 
         return(
-            <button type='button' onClick={change}>
-                Change Locale to BD
+            <button type='button' onClick={() => {change(locale)}}>
+                Change Locale
             </button>
         );
     }
