@@ -4,6 +4,8 @@ class Form extends React.Component{
     state = {
         textValue: 'Hello',
         textareaValue: 'Hello textarea',
+        fruitValue: 'banana',
+        isAdult: true
     }
 
     handleChange = (e) => {
@@ -15,13 +17,28 @@ class Form extends React.Component{
             this.setState({
                 textareaValue:e.target.value
             })
+        } else if(e.target.type === 'select-one'){
+            this.setState({
+                fruitValue:e.target.value
+            })
+        } else if(e.target.type === 'checkbox'){
+            this.setState({
+                isAdult: e.target.checked
+            })
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        const {textValue, textareaValue, fruitValue, isAdult} = this.state;
+        console.log(textValue, textareaValue, fruitValue, isAdult);
+    }
+
     render(){
-        const {textValue, textareaValue} = this.state;
+        const {textValue, textareaValue, fruitValue, isAdult} = this.state;
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <input 
                     type='text' 
                     value={textValue} 
@@ -32,6 +49,14 @@ class Form extends React.Component{
                     value={textareaValue} 
                     onChange={this.handleChange}>
                 </textarea>
+
+                <select value={fruitValue} onChange={this.handleChange}>
+                    <option value='apple'>Apple</option>
+                    <option value='banana'>Banana</option>
+                </select>
+
+                <input type='checkbox' checked={isAdult} onChange={this.handleChange}></input>
+                <input type='submit' value='Submit' />
             </form>
         );
     }
