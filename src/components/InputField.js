@@ -6,19 +6,14 @@ const scales = {
 }
 
 export default class InputField extends React.Component{
-    state = {
-        temparature: ''
-    }
-
     render(){
-        const {temparature} = this.state;
-        const {scale, Changehandler} = this.props;
+        const {scale, temparature, handler} = this.props;
 
         return(
             <fieldset>
                 <legend>Enter temparature in {scales[scale]}</legend>
 
-                <input type="text" value={temparature} onChange={Changehandler} />
+                <input type="text" data-scale={scale} value={temparature} onChange={(e) => handler(e, scale)} />
             </fieldset>
         );
     }

@@ -1,28 +1,32 @@
 import React from 'react';
 import BoilingVerdict from "./BoilingVerdict";
 import InputField from "./InputField";
+import { celciusToFarenhite, farenhiteToCelcius, convertTemp } from '../lib/converter';
 
 export default class Calculator extends React.Component{
     state = {
         temparature: ''
     }
 
-    changeHandler = (e) => {
-        // this.setState({
-        //     temparature: e.target.value;
-        // });
-        console.log('Calculator');
+    changeHandler = (e, scale) => {
+        this.setState({
+            scale,
+            temparature: e.target.value,
+        });
     }
 
     render(){
-        const {temparature} = this.state;
+        const {scale, temparature} = this.state;
+        const farehite = scale === 'c' ? convertTemp(temparature, celciusToFarenhite) : temparature;
+        const celcius = scale === 'f' ? convertTemp(temparature, farenhiteToCelcius) : temparature;
 
         return(
             <div>
-                <InputField scale="c" value={temparature} handler={this.changeHandler} />
+                <InputField scale="c" temparature={celcius} handler={this.changeHandler} />
 
-                <InputField scale="f" handler={this.changeHandler} />
-                <BoilingVerdict />
+                <InputField scale="f" temparature={farehite} handler={this.changeHandler} />
+
+                <BoilingVerdict temparature={temparature} />
             </div>               
         );
     }
