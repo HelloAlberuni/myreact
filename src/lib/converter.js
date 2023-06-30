@@ -1,6 +1,6 @@
 export function celciusToFarenhite( temparature = 0 ){
     if( temparature > 0 ){
-        temparature = temparature * 2;
+        temparature = temparature * 2; // Add the actual formula here
     }
 
     return Number.parseFloat(temparature);
@@ -8,7 +8,7 @@ export function celciusToFarenhite( temparature = 0 ){
 
 export function farenhiteToCelcius( temparature = 0 ){
     if( temparature > 0 ){
-        temparature = temparature / 2;
+        temparature = temparature / 2; // Add the actual formula here
     }
 
     return Number.parseFloat(temparature);
